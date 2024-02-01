@@ -5,7 +5,7 @@ function editNav() {
   } else {
     x.className = "topnav";
   }
-}
+} 
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -27,11 +27,12 @@ function launchModal () {
 function closeModal() {
   modalbg.style.display="none";
 }
-
+// modal de fin d'inscription
 closeBtn.addEventListener("click",closeModal);
 
 // fermeture derniere modal
 close.addEventListener("click",closeModal);
+// fonction pour mettre a zero les valeurs de la formulaire
 function remiseAZero () {
   closeModal();
   document.getElementById("formulaire").reset();
@@ -42,19 +43,22 @@ function remiseAZero () {
 fermer.addEventListener("click",remiseAZero);
 
 // verification formulaire
+// fonction d'affichage d'erreur
 function ToggleError (element, dataError, dataErrorVisible) {
   element.setAttribute("data-error",dataError);
   element.setAttribute("data-error-visible",dataErrorVisible);
 }
 
+// verifier si un champ est vide
 function verifierChamp (chaine) {
   let test = true;
-  if(chaine.length>=2){
+  if(chaine.length<=2){
     test = false
   }
   return test;
 }
 
+// verification du modéle de l'email
 function verifierEmail (mail){
   let test=false;
   let emailRegExp = new RegExp ("[a-z]+@[a-z._-]+");
@@ -63,7 +67,17 @@ function verifierEmail (mail){
   }
   return test;
 }
+// verification nbr de tournoi
+function nbTournoi (){
+  if (!(parseInt(document.getElementById("quantity").value) >= 0)){
+    ToggleError(document.getElementById("quantity").parentElement,"vous devez entrer le nombre de tournois.","true");
+    return false;
+  }
+  ToggleError(document.getElementById("quantity").parentElement,undefined, "false");
+  return true;
+}
 
+// verification de selection du pays
 function isAnyLocationSelected (){
   let test = true;
   const locations = document.getElementsByName('location');
@@ -84,6 +98,7 @@ function isAnyLocationSelected (){
   return test;
 }
 
+// affichage d'erreur apres verification
 function testErreur (id,message){
   if (!verifierChamp(document.getElementById(id).value)){
     ToggleError(document.getElementById(id).parentElement, message, "true");
@@ -93,6 +108,7 @@ function testErreur (id,message){
   return true;
 }
 
+// acceptation des termes 
 function testCheckBox () {
   const conditionUtilisation = document.getElementById("checkbox1").checked;
   if (!conditionUtilisation){
@@ -108,7 +124,7 @@ function validerForm(){
   const testNom = testErreur("last","Veuillez entrer 2 caractères ou plus pour le champ du nom.");
   const testMail =testErreur("email","l'adresse mail est invalide");
   const testDate = testErreur("birthdate","Vous devez entrer votre date de naissance.");
-  const testQuantity = testErreur("quantity","vous devez entrer le nombre de tournois.");
+  const testQuantity = nbTournoi();
   const testLocation = isAnyLocationSelected();
   const testCondition = testCheckBox();
   return  testPrenom && testNom && testMail && testDate && testQuantity && testLocation && testCondition;
