@@ -21,7 +21,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click",launchModal));
 
 // launch modal form
 function launchModal () {
-    modalbg.style.display = "block";
+  modalbg.style.display = "block";
 }
 // close modal form 
 function closeModal() {
@@ -61,7 +61,7 @@ function verifierChamp (chaine) {
 // verification du modéle de l'email
 function verifierEmail (mail){
   let test=false;
-  let emailRegExp = new RegExp ("[a-z]+@[a-z._-]+");
+  let emailRegExp = new RegExp(/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/);
   if (emailRegExp.test(mail)){
     test = true ;
   }
