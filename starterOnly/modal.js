@@ -52,7 +52,8 @@ function ToggleError (element, dataError, dataErrorVisible) {
 // verifier si un champ est vide
 function verifierChamp (chaine) {
   let test = true;
-  if(chaine.length<=2){
+  const chaineReg = new RegExp(/[a-zA-Z]{2,}$/);
+  if(!chaineReg.test(chaine)){
     test = false
   }
   return test;
