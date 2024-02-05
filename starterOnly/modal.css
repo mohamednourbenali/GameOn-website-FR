@@ -68,7 +68,7 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -76,7 +76,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -468,6 +468,11 @@ input {
   font-size: 6rem;
   font-weight: normal;
   white-space: nowrap;
+}
+@media screen and (max-width : 960px) {
+  .hero-headline{
+    font-size: 4.5rem;
+  }
 }
 .hero-text {
   width: 146%;
